@@ -1,0 +1,20 @@
+# Dependencias
+node_modules/
+
+# Sesión de Facebook (COOKIES Y DATOS PRIVADOS)
+sesion_facebook/
+
+# Capturas de pantalla con posible información personal
+*.png
+*.jpg
+*.jpeg
+
+# Archivos de variables de entorno
+.env
+
+# Logs
+*.log
+
+# Archivos temporales
+tmp/
+temp/
