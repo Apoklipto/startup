@@ -103,7 +103,7 @@ console.log('📁 Ruta construida:', rutaImagen);
 if (fs.existsSync(rutaImagen)) {
   console.log('✅ Archivo encontrado en disco.');
 } else {
-  console.error('❌ El archivo NO existe en:', rutaImagen);
+  console.error('❌ El archivo NO existe en:', rutaImagen);vb
 }
 console.log('📎 Buscando input de archivo oculto...');
 
