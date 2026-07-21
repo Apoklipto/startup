@@ -40,7 +40,7 @@ const fs = require('fs');
   // ======================
   // 2. IR AL GRUPO
   // ======================
-  const grupoID = '1731721740715291';
+  const grupoID = '2280670018999339';
   const urlGrupo = `https://www.facebook.com/groups/${grupoID}`;
 
   console.log(`➡️ Navegando al grupo ${grupoID}...`);
@@ -94,57 +94,44 @@ const fs = require('fs');
   console.log('✅ Texto escrito.');
 
 // ======================
-// 5. SUBIR IMAGEN (sin abrir explorador)
+// 5. SUBIR IMAGEN (Solución con filechooser)
 // ======================
 const rutaImagen = path.join('C:', 'Users', 'ASUS', 'Desktop', 'startup', 'image', 'F6.jpeg');
 console.log('📁 Ruta construida:', rutaImagen);
 
-// Verificar que el archivo existe
-if (fs.existsSync(rutaImagen)) {
-  console.log('✅ Archivo encontrado en disco.');
-} else {
-  console.error('❌ El archivo NO existe en:', rutaImagen);vb
+if (!fs.existsSync(rutaImagen)) {
+    console.error('❌ El archivo NO existe en:', rutaImagen);
+    await browser.close();
+    return;
 }
-console.log('📎 Buscando input de archivo oculto...');
+console.log('✅ Archivo encontrado.');
 
+console.log('📎 Preparando subida de imagen...');
 
-// Estrategia: buscar el input[type="file"] que ya existe en el DOM (sin hacer clic en Foto/video)
-// Facebook lo tiene oculto pero presente. Lo forzamos a estar disponible.
 try {
-  // Intentamos directamente con el input de archivo (sin abrir explorador)
-  const inputFile = page.locator('input[type="file"][accept*="image"]').first();
-  
-  // Forzamos que sea visible para Playwright (aunque esté oculto visualmente)
-  await inputFile.evaluate(el => {
-    el.style.display = 'block';
-    el.style.visibility = 'visible';
-    el.style.opacity = '1';
-    el.style.position = 'fixed';
-    el.style.top = '0';
-    el.style.left = '0';
-    el.style.zIndex = '9999';
-  });
-  
-  // Ahora le asignamos la imagen directamente
-  await inputFile.setInputFiles(rutaImagen);
-  console.log('🖼️ Imagen inyectada directamente en el input.');
-  await page.waitForTimeout(5000);
-} catch (error) {
-  console.error('❌ No se pudo inyectar la imagen sin diálogo:', error.message);
-  
-  // Plan B: hacer clic en Foto/video y luego inyectar rápido
-  console.log('🔄 Probando método alternativo...');
-  try {
+    // 1. Crear una promesa que espera el diálogo de archivos
+    const fileChooserPromise = page.waitForEvent('filechooser');
+    
+    // 2. Hacer clic en "Foto/video" (esto abrirá el diálogo nativo)
     await page.getByLabel('Foto/video').click();
-    await page.waitForTimeout(1000);
-    const inputFile2 = page.locator('input[type="file"]').first();
-    await inputFile2.setInputFiles(rutaImagen);
-    console.log('🖼️ Imagen subida con método alternativo.');
+    console.log('🖱️ Clic en Foto/video, esperando diálogo...');
+    
+    // 3. Esperar a que Playwright capture el diálogo
+    const fileChooser = await fileChooserPromise;
+    console.log('✅ Diálogo de archivos capturado.');
+    
+    // 4. Inyectar el archivo directamente (sin tocar la ventana del sistema)
+    await fileChooser.setFiles(rutaImagen);
+    console.log('🖼️ Imagen inyectada correctamente.');
+    
+    // 5. Esperar a que aparezca la vista previa
     await page.waitForTimeout(5000);
-  } catch (error2) {
-    console.error('❌ Error también en método alternativo:', error2.message);
+    console.log('✅ Imagen visible en el compositor.');
+    
+} catch (error) {
+    console.error('❌ Error al subir imagen:', error.message);
     await page.screenshot({ path: 'error_subida.png', fullPage: true });
-  }
+    console.log('📸 Captura guardada en error_subida.png');
 }
 
   console.log('✅ Publicación lista (NO publicada).');
