@@ -2,6 +2,47 @@ const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 
+
+
+// ======================
+// FUNCIÓN PARA LEER CSV (AQUÍ VA - ANTES DEL async)
+// ======================
+function leerProductoDelCSV(nombreImagen) {
+  const csvPath = path.join(__dirname, 'productos.csv');
+  
+  if (!fs.existsSync(csvPath)) {
+    console.error('❌ No se encuentra el archivo productos.csv');
+    return null;
+  }
+  
+  const contenido = fs.readFileSync(csvPath, 'utf-8');
+  const lineas = contenido.split('\n').filter(linea => linea.trim());
+  
+  for (const linea of lineas) {
+    const matches = linea.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+    
+    if (matches && matches.length >= 3) {
+      const nombre = matches[0].replace(/"/g, '').trim();
+      const descripcion = matches[1].replace(/"/g, '').trim();
+      const imagen = matches[2].replace(/"/g, '').trim();
+      
+      if (imagen === nombreImagen) {
+        console.log('✅ Producto encontrado:', nombre);
+        return {
+          nombre: nombre,
+          descripcion: descripcion,
+          imagen: imagen
+        };
+      }
+    }
+  }
+  
+  console.error('❌ No se encontró producto con imagen:', nombreImagen);
+  return null;
+}
+
+
+
 (async () => {
   const carpetaSesion = path.join(__dirname, 'sesion_facebook');
 
@@ -150,9 +191,25 @@ try {
 }
 
 // ======================
-// 5. INYECTAR TEXTO
+// 5. INYECTAR TEXTO DESDE CSV
 // ======================
 console.log('⌨️ Preparando para inyectar texto...');
+
+// Leer el producto del CSV
+const producto = leerProductoDelCSV('F6.jpeg');
+
+if (!producto) {
+  console.error('❌ No se pudo cargar el producto');
+  await browser.close();
+  return;
+}
+
+// Crear el texto para publicar
+const texto = `${producto.nombre}\n\n${producto.descripcion}`;
+console.log('📝 Texto a publicar:');
+console.log('---');
+console.log(texto);
+console.log('---');
 
 // Hacer clic en el editor para asegurar foco
 await editor.click();
@@ -163,17 +220,15 @@ await editor.fill('');
 await page.waitForTimeout(500);
 
 // Inyectar texto
-const texto = 'Hola, esto es una prueba automatizada.';
-console.log('📝 Inyectando texto:', texto);
+console.log('📝 Inyectando texto...');
 await editor.fill(texto);
 await page.waitForTimeout(1000);
 
 // Verificar
 try {
   const textoActual = await editor.textContent();
-  console.log('📋 Texto actual:', textoActual);
   
-  if (textoActual && textoActual.includes('prueba automatizada')) {
+  if (textoActual && textoActual.includes(producto.nombre)) {
     console.log('✅ Texto inyectado correctamente');
   } else {
     console.log('⚠️ Reintentando inyección...');
