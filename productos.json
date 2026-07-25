@@ -1,0 +1,100 @@
+[
+  {
+    "nombre": "EcoFlow Delta 2 - 1024Wh",
+    "descripcion": "Transporte Gratis. Garantia: 7 dias. Precio: 830. Escribir al 54320330",
+    "imagen": "delta2_1024.jpg",
+    "precio": "830",
+    "publicar": true
+  },
+  {
+    "nombre": "EcoFlow Delta 3 Max - 2048Wh",
+    "descripcion": "Mensajeria incluida en la Habana. Garantia: 7 dias. Precio: 1490. Escribir al 54320330",
+    "imagen": "delta3max.jpg",
+    "precio": "1490",
+    "publicar": true
+  },
+  {
+    "nombre": "EcoFlow Delta 3 Plus - 1024Wh",
+    "descripcion": "Garantia: 7 dias. Precio: 970. Escribir al 54320330",
+    "imagen": "delta3plus.jpg",
+    "precio": "970",
+    "publicar": true
+  },
+  {
+    "nombre": "EcoFlow Delta 3 Classic - 1024Wh",
+    "descripcion": "Garantia: 7 dias. Precio: 775. Escribir al 54320330",
+    "imagen": "delta3classic.jpg",
+    "precio": "775",
+    "publicar": true
+  },
+  {
+    "nombre": "EcoFlow Delta 3 1500 - 1536Wh",
+    "descripcion": "Garantia: 7 dias. Precio: 950. Escribir al 54320330",
+    "imagen": "delta3_1500.jpg",
+    "precio": "950",
+    "publicar": true
+  },
+  {
+    "nombre": "EcoFlow Delta 3 - 1024Wh",
+    "descripcion": "Garantia: 7 dias. Precio: 930. Escribir al 54320330",
+    "imagen": "delta3_1024.jpeg",
+    "precio": "930",
+    "publicar": true
+  },
+  {
+    "nombre": "EcoFlow Delta Pro 3600Wh",
+    "descripcion": "Transporte incluido. Factura y garantia: 1 mes. Precio: 2850. Escribir al 54320330",
+    "imagen": "deltaPro3600.jpeg",
+    "precio": "2850",
+    "publicar": true
+  },
+  {
+    "nombre": "EcoFlow Delta Pro Ultra - 6kWh",
+    "descripcion": "Transporte incluido. Garantia: 7 dias. Precio: 4620. Escribir al 54320330",
+    "imagen": "deltaProUltra.jpg",
+    "precio": "4620",
+    "publicar": true
+  },
+  {
+    "nombre": "Kit Solar Must 3kW - 5kWh",
+    "descripcion": "Instalacion y transporte en La Habana incluidos. Garantia: 2 meses. Precio: 4700. Escribir al 54320330",
+    "imagen": "must3kW.jpg",
+    "precio": "4700",
+    "publicar": true
+  },
+  {
+    "nombre": "Kit Solar Must 6kW - 15kWh",
+    "descripcion": "Instalacion y transporte en La Habana incluidos. Garantia: 3 meses. Precio: 4700. Escribir al 54320330",
+    "imagen": "must6kW.jpg",
+    "precio": "4700",
+    "publicar": true
+  },
+  {
+    "nombre": "Sistema Todo en Uno InfiniSolar 6kW - 15.3kWh",
+    "descripcion": "Transporte incluido. Garantia: 2 meses. Precio: 3900. Escribir al 54320330",
+    "imagen": "infinisolar.jpg",
+    "precio": "3900",
+    "publicar": true
+  },
+  {
+    "nombre": "Ventilador Recargable F6",
+    "descripcion": "Mensajeria gratis a algunos lugares. Garantia de 7 dias. Precio: 75. Escribir al 54320330",
+    "imagen": "F6.jpeg",
+    "precio": "75",
+    "publicar": true
+  },
+  {
+    "nombre": "Panel Solar Bifacial de 450W",
+    "descripcion": "Especial para las EcoFLow. Precio: 395. Transporte incluido. Escribir al 54320330",
+    "imagen": "panel450w.jpeg",
+    "precio": "395",
+    "publicar": true
+  },
+  {
+    "nombre": "Kit solar todo en uno Sunshine de 10Kw",
+    "descripcion": "Inversor Híbrido de 10Kw Sunshine para la 110/220, Batería de 16Kw, 51.2v x 320Ah (Sunshine), 6 paneles monofaciales de 610W LONGI. Precio: 11500 con transporte e instalación incluidos en el precio",
+    "imagen": "kit10kwSunshine.jpeg",
+    "precio": "11500",
+    "publicar": true
+  }
+]
