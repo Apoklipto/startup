@@ -1,100 +1,250 @@
-[
-  {
-    "nombre": "EcoFlow Delta 2 - 1024Wh",
-    "descripcion": "Transporte Gratis. Garantia: 7 dias. Precio: 830. Escribir al 54320330",
-    "imagen": "delta2_1024.jpg",
-    "precio": "830",
-    "publicar": true
+{
+  "config": {
+    "numeroContacto": "54320330",
+    "moneda": "USD",
+    "tiempoEntrePublicaciones": 20,
+    "carpetaImagenes": "image"
   },
-  {
-    "nombre": "EcoFlow Delta 3 Max - 2048Wh",
-    "descripcion": "Mensajeria incluida en la Habana. Garantia: 7 dias. Precio: 1490. Escribir al 54320330",
-    "imagen": "delta3max.jpg",
-    "precio": "1490",
-    "publicar": true
-  },
-  {
-    "nombre": "EcoFlow Delta 3 Plus - 1024Wh",
-    "descripcion": "Garantia: 7 dias. Precio: 970. Escribir al 54320330",
-    "imagen": "delta3plus.jpg",
-    "precio": "970",
-    "publicar": true
-  },
-  {
-    "nombre": "EcoFlow Delta 3 Classic - 1024Wh",
-    "descripcion": "Garantia: 7 dias. Precio: 775. Escribir al 54320330",
-    "imagen": "delta3classic.jpg",
-    "precio": "775",
-    "publicar": true
-  },
-  {
-    "nombre": "EcoFlow Delta 3 1500 - 1536Wh",
-    "descripcion": "Garantia: 7 dias. Precio: 950. Escribir al 54320330",
-    "imagen": "delta3_1500.jpg",
-    "precio": "950",
-    "publicar": true
-  },
-  {
-    "nombre": "EcoFlow Delta 3 - 1024Wh",
-    "descripcion": "Garantia: 7 dias. Precio: 930. Escribir al 54320330",
-    "imagen": "delta3_1024.jpeg",
-    "precio": "930",
-    "publicar": true
-  },
-  {
-    "nombre": "EcoFlow Delta Pro 3600Wh",
-    "descripcion": "Transporte incluido. Factura y garantia: 1 mes. Precio: 2850. Escribir al 54320330",
-    "imagen": "deltaPro3600.jpeg",
-    "precio": "2850",
-    "publicar": true
-  },
-  {
-    "nombre": "EcoFlow Delta Pro Ultra - 6kWh",
-    "descripcion": "Transporte incluido. Garantia: 7 dias. Precio: 4620. Escribir al 54320330",
-    "imagen": "deltaProUltra.jpg",
-    "precio": "4620",
-    "publicar": true
-  },
-  {
-    "nombre": "Kit Solar Must 3kW - 5kWh",
-    "descripcion": "Instalacion y transporte en La Habana incluidos. Garantia: 2 meses. Precio: 4700. Escribir al 54320330",
-    "imagen": "must3kW.jpg",
-    "precio": "4700",
-    "publicar": true
-  },
-  {
-    "nombre": "Kit Solar Must 6kW - 15kWh",
-    "descripcion": "Instalacion y transporte en La Habana incluidos. Garantia: 3 meses. Precio: 4700. Escribir al 54320330",
-    "imagen": "must6kW.jpg",
-    "precio": "4700",
-    "publicar": true
-  },
-  {
-    "nombre": "Sistema Todo en Uno InfiniSolar 6kW - 15.3kWh",
-    "descripcion": "Transporte incluido. Garantia: 2 meses. Precio: 3900. Escribir al 54320330",
-    "imagen": "infinisolar.jpg",
-    "precio": "3900",
-    "publicar": true
-  },
-  {
-    "nombre": "Ventilador Recargable F6",
-    "descripcion": "Mensajeria gratis a algunos lugares. Garantia de 7 dias. Precio: 75. Escribir al 54320330",
-    "imagen": "F6.jpeg",
-    "precio": "75",
-    "publicar": true
-  },
-  {
-    "nombre": "Panel Solar Bifacial de 450W",
-    "descripcion": "Especial para las EcoFLow. Precio: 395. Transporte incluido. Escribir al 54320330",
-    "imagen": "panel450w.jpeg",
-    "precio": "395",
-    "publicar": true
-  },
-  {
-    "nombre": "Kit solar todo en uno Sunshine de 10Kw",
-    "descripcion": "Inversor Híbrido de 10Kw Sunshine para la 110/220, Batería de 16Kw, 51.2v x 320Ah (Sunshine), 6 paneles monofaciales de 610W LONGI. Precio: 11500 con transporte e instalación incluidos en el precio",
-    "imagen": "kit10kwSunshine.jpeg",
-    "precio": "11500",
-    "publicar": true
-  }
-]
+  "productos": [
+    {
+      "id": "ecoflow-delta2-1024",
+      "nombre": "EcoFlow Delta 2 - 1024Wh",
+      "descripcion": "Transporte Gratis. Garantia: 7 dias.",
+      "precio": 830,
+      "imagen": "delta2_1024.jpg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "1024wh"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ecoflow-delta3max-2048",
+      "nombre": "EcoFlow Delta 3 Max - 2048Wh",
+      "descripcion": "Mensajeria incluida en la Habana. Garantia: 7 dias.",
+      "precio": 1490,
+      "imagen": "delta3max.jpg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "2048wh"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ecoflow-delta3plus-1024",
+      "nombre": "EcoFlow Delta 3 Plus - 1024Wh",
+      "descripcion": "Garantia: 7 dias.",
+      "precio": 970,
+      "imagen": "delta3plus.jpg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "1024wh"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ecoflow-delta3classic-1024",
+      "nombre": "EcoFlow Delta 3 Classic - 1024Wh",
+      "descripcion": "Garantia: 7 dias.",
+      "precio": 775,
+      "imagen": "delta3classic.jpg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "1024wh"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ecoflow-delta31500-1536",
+      "nombre": "EcoFlow Delta 3 1500 - 1536Wh",
+      "descripcion": "Garantia: 7 dias.",
+      "precio": 950,
+      "imagen": "delta3_1500.jpg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "1536wh"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ecoflow-delta3-1024",
+      "nombre": "EcoFlow Delta 3 - 1024Wh",
+      "descripcion": "Garantia: 7 dias.",
+      "precio": 930,
+      "imagen": "delta3_1024.jpeg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "1024wh"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ecoflow-deltapro-3600",
+      "nombre": "EcoFlow Delta Pro 3600Wh",
+      "descripcion": "Transporte incluido. Factura y garantia: 1 mes.",
+      "precio": 2850,
+      "imagen": "deltaPro3600.jpeg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "3600wh", "pro"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ecoflow-deltaproultra-6k",
+      "nombre": "EcoFlow Delta Pro Ultra - 6kWh",
+      "descripcion": "Transporte incluido. Garantia: 7 dias.",
+      "precio": 4620,
+      "imagen": "deltaProUltra.jpg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "6kwh", "pro", "ultra"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "kit-solar-must-3kw",
+      "nombre": "Kit Solar Must 3kW - 5kWh",
+      "descripcion": "Instalacion y transporte en La Habana incluidos. Garantia: 2 meses.",
+      "precio": 4700,
+      "imagen": "must3kW.jpg",
+      "categoria": "Kit Solar",
+      "publicar": true,
+      "tags": ["solar", "kit", "5kwh"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "kit-solar-must-6kw",
+      "nombre": "Kit Solar Must 6kW - 15kWh",
+      "descripcion": "Instalacion y transporte en La Habana incluidos. Garantia: 3 meses.",
+      "precio": 4700,
+      "imagen": "must6kW.jpg",
+      "categoria": "Kit Solar",
+      "publicar": true,
+      "tags": ["solar", "kit", "15kwh"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "infinisolar-6kw",
+      "nombre": "Sistema Todo en Uno InfiniSolar 6kW - 15.3kWh",
+      "descripcion": "Transporte incluido. Garantia: 2 meses.",
+      "precio": 3900,
+      "imagen": "infinisolar.jpg",
+      "categoria": "Kit Solar",
+      "publicar": true,
+      "tags": ["solar", "inversor", "15.3kwh"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ventilador-f6",
+      "nombre": "Ventilador Recargable F6",
+      "descripcion": "Mensajeria gratis a algunos lugares. Garantia de 7 dias.",
+      "precio": 75,
+      "imagen": "F6.jpeg",
+      "categoria": "Ventiladores",
+      "publicar": true,
+      "tags": ["ventilador", "recargable"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "panel-solar-450w",
+      "nombre": "Panel Solar Bifacial de 450W",
+      "descripcion": "Especial para las EcoFLow. Transporte incluido.",
+      "precio": 395,
+      "imagen": "panel450w.jpg",
+      "categoria": "Paneles Solares",
+      "publicar": true,
+      "tags": ["panel", "solar", "450w", "bifacial"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "kit-sunshine-10kw",
+      "nombre": "Kit solar todo en uno Sunshine de 10Kw",
+      "descripcion": "Inversor Híbrido de 10Kw Sunshine para la 110/220, Batería de 16Kw, 51.2v x 320Ah (Sunshine), 6 paneles monofaciales de 610W LONGI. Transporte e instalación incluidos.",
+      "precio": 11500,
+      "imagen": "kit10kwSunshine.jpg",
+      "categoria": "Kit Solar",
+      "publicar": true,
+      "tags": ["solar", "kit", "10kw", "sunshine"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "inversor-sunshine-10kw",
+      "nombre": "Inversor Hibrido Sunshine de 10Kw",
+      "descripcion": "Inversor Híbrido de 10Kw Sunshine para la 110/220v. Transporte incluido.",
+      "precio": 2200,
+      "imagen": "sunshine.jpg",
+      "categoria": "Inversores",
+      "publicar": true,
+      "tags": ["inversor", "sunshine", "10kw"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "oupes-mega2-2048",
+      "nombre": "Oupes Mega 2 - 2048wh",
+      "descripcion": "2048wh hasta 5000w pico. Soporta hasta 2100w en paneles. Tiene la espiga de 30 amperes. Transporte incluido.",
+      "precio": 1250,
+      "imagen": "oupesMega2.jpg",
+      "categoria": "Oupes",
+      "publicar": true,
+      "tags": ["bateria", "2048wh", "oupes"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ecoflow-delta2max-2048",
+      "nombre": "Ecoflow Delta 2 Max 2048W",
+      "descripcion": "Hasta 4800w pico. Entrada solar de hasta 1000W. 7 días de garantía y transporte incluido.",
+      "precio": 1660,
+      "imagen": "delta2max.jpg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "2048wh", "max"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ecoflow-deltapro3",
+      "nombre": "Ecoflow Delta Pro 3 110 y 200 v",
+      "descripcion": "Capacidad de almacenamiento de 4000wh, 8000w Máxima y 3600w nominal. Garantía de un mes y transporte incluido en la habana.",
+      "precio": 3450,
+      "imagen": "deltaPro3.jpg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "4000wh", "pro"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ecoflow-delta3maxplus-2048",
+      "nombre": "EcoFlow Delta 3 Max Plus 2048Wh",
+      "descripcion": "Potencia de salida 3000w. Entrada solar de hasta 1000w. Transporte incluido.",
+      "precio": 1650,
+      "imagen": "delta3maxPlus.jpg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "2048wh", "max", "plus"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    },
+    {
+      "id": "ecoflow-delta3ultra",
+      "nombre": "EcoFlow Delta 3 Ultra",
+      "descripcion": "Potencia de salida 3072Wh con un pico de 7200W. Entrada solar de hasta 2.6Kw. Transporte incluido y una semana de garantía.",
+      "precio": 2100,
+      "imagen": "delta3ultra.jpg",
+      "categoria": "EcoFlow",
+      "publicar": true,
+      "tags": ["bateria", "3072wh", "ultra"],
+      "fechaCreacion": "2024-01-15",
+      "fechaModificacion": "2024-07-26"
+    }
+  ]
+}

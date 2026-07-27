@@ -10,18 +10,21 @@ function leerTodosLosProductos() {
   
   if (!fs.existsSync(jsonPath)) {
     console.error('❌ No se encuentra productos.json');
-    return [];
+    return { config: {}, productos: [] };
   }
   
   const contenido = fs.readFileSync(jsonPath, 'utf-8');
-  const todosLosProductos = JSON.parse(contenido);
+  const datos = JSON.parse(contenido);
   
-  // AHORA: Publicar TODOS los productos (ignorar el campo "publicar")
-  const productos = todosLosProductos;
+  // Solo publicar los marcados
+  const productos = datos.productos.filter(p => p.publicar !== false);
   
-  console.log(`📦 ${productos.length} productos cargados`);
+  console.log(`📦 ${productos.length} productos para publicar`);
   
-  return productos;
+  return {
+    config: datos.config || {},
+    productos: productos
+  };
 }
 
 // ======================
@@ -81,19 +84,22 @@ function leerTodosLosProductos() {
     return;
   }
 
-  // ======================
-  // 3. CARGAR PRODUCTOS DEL JSON
-  // ======================
-  console.log('📋 Cargando productos...');
-  const productos = leerTodosLosProductos();
-  
-  if (productos.length === 0) {
-    console.error('❌ No hay productos para publicar');
-    await browser.close();
-    return;
-  }
-  
-  console.log(`📊 Total: ${productos.length} productos`);
+// 3. CARGAR PRODUCTOS DEL JSON
+console.log('📋 Cargando productos...');
+const datos = leerTodosLosProductos();
+const productos = datos.productos;
+const config = datos.config;
+const numeroContacto = config.numeroContacto || '54320330';
+
+if (productos.length === 0) {
+  console.error('❌ No hay productos para publicar');
+  await browser.close();
+  return;
+}
+
+console.log(`📊 Total: ${productos.length} productos`);
+console.log(`📞 Contacto: ${numeroContacto}`);
+
 
   // ======================
   // 4. BUCLE DE PUBLICACIONES (SOLO UN FOR)
@@ -134,9 +140,7 @@ function leerTodosLosProductos() {
       console.log('✅ Editor encontrado');
 
       // Inyectar texto
-      const producto = productos[index];
-      console.log(`⌨️ Publicando: ${producto.nombre}`);
-      const texto = `${producto.nombre}\n\n${producto.descripcion}`;
+      const texto = `${producto.nombre}\n\n${producto.descripcion}\n\nPrecio: ${producto.precio}.\nEscribir al ${numeroContacto}`;
       
       await editor.click();
       await page.waitForTimeout(1500);

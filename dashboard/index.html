@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Gestor de Productos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1>📊 Dashboard de Productos</h1>
+        <div class="header-actions">
+            <button class="btn btn-outline btn-sm" onclick="toggleDark()">🌙</button>
+            <button class="btn btn-outline btn-sm" onclick="importarJSON()">📥 Importar JSON</button>
+            <button class="btn btn-outline btn-sm" onclick="descargarJSON()">💾 Exportar JSON</button>
+            <button class="btn btn-primary" onclick="abrirModalNuevo()">+ Nuevo Producto</button>
+            <button class="btn btn-success" onclick="ejecutarPublicador()">🚀 Publicar Ahora</button>
+        </div>
+    </header>
+
+    <!-- ESTADÍSTICAS -->
+    <div class="stats" id="stats"></div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+        <input type="text" class="search-box" placeholder="🔍 Buscar productos..." oninput="filtrarProductos()" id="searchInput">
+        <select onchange="filtrarProductos()" id="filterCategoria">
+            <option value="todas">Todas las categorías</option>
+        </select>
+        <select onchange="filtrarProductos()" id="filterEstado">
+            <option value="todos">Todos</option>
+            <option value="activos">Activos</option>
+            <option value="ocultos">Ocultos</option>
+        </select>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div class="productos-grid" id="productosGrid"></div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modalContent"></div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="components/modal.js"></script>
+    <script src="components/productCard.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // ======================
+        // INICIAR
+        // ======================
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark');
+        }
+
+        cargarDatos();
+    </script>
+</body>
+</html>
