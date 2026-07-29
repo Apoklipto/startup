@@ -35,18 +35,27 @@ function leerTodosLosProductos() {
 
   console.log('🟢 Abriendo navegador...');
   const browser = await chromium.launchPersistentContext(carpetaSesion, {
-    headless: false,
+    headless: true,
     args: [
       '--disable-blink-features=AutomationControlled',
-      '--start-maximized'
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu'
     ],
-    viewport: null,
+    viewport: { width: 1280, height: 720},
     slowMo: 300
   });
 
   const page = await browser.newPage();
   page.setDefaultTimeout(120000);
 
+      // Verificar si hay sesión
+    const estaLogueado = await page.locator('text=¿Quién eres?').count() === 0;
+    if (!estaLogueado) {
+        console.log('⚠️ No hay sesión activa. Inicia sesión localmente primero.');
+        // Guardar estado de sesión
+    }
   // ======================
   // 1. IR A FACEBOOK
   // ======================
@@ -140,6 +149,7 @@ console.log(`📞 Contacto: ${numeroContacto}`);
       console.log('✅ Editor encontrado');
 
       // Inyectar texto
+      const producto = productos[index];
       const texto = `${producto.nombre}\n\n${producto.descripcion}\n\nPrecio: ${producto.precio}.\nEscribir al ${numeroContacto}`;
       
       await editor.click();

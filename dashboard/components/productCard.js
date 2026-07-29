@@ -3,8 +3,15 @@
 // ======================
 
 function renderizarProductos(productosFiltrados = null) {
-    const productos = productosFiltrados || datos.productos;
+    if (!window.datos || !window.datos.productos) {
+        console.error('❌ datos no disponible en renderizarProductos');
+        return;
+    }
+    
+    const productos = productosFiltrados || window.datos.productos;
     const grid = document.getElementById('productosGrid');
+
+    if (!grid) return;
 
     if (productos.length === 0) {
         grid.innerHTML = `
@@ -32,3 +39,5 @@ function renderizarProductos(productosFiltrados = null) {
         </div>
     `).join('');
 }
+
+window.renderizarProductos = renderizarProductos;

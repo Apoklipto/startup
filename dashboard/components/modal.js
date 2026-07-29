@@ -2,12 +2,16 @@
 // COMPONENTE MODAL
 // ======================
 
+// NO declarar datos aquí - usar el global
 let productoEditando = null;
-let datos = null;
 
-// Inicializar con referencia a los datos
 function initModal(datosRef) {
-    datos = datosRef;
+    // Usar el datos global
+    if (typeof datos === 'undefined') {
+        console.error('❌ datos no está definido');
+        return;
+    }
+    console.log('✅ Modal inicializado');
 }
 
 function abrirModalNuevo() {
@@ -18,7 +22,8 @@ function abrirModalNuevo() {
 
 function abrirModalEditar(index) {
     productoEditando = index;
-    document.getElementById('modalContent').innerHTML = formularioHTML(datos.productos[index]);
+    const producto = window.datos.productos[index];
+    document.getElementById('modalContent').innerHTML = formularioHTML(producto);
     document.getElementById('modalOverlay').classList.add('active');
 }
 
@@ -27,6 +32,13 @@ function cerrarModal() {
 }
 
 function formularioHTML(p) {
+    if (!window.datos || !window.datos.config) {
+        console.error('❌ datos o config no están disponibles');
+        return '<h2>Error: Datos no disponibles</h2>';
+    }
+    
+    const numeroContacto = window.datos.config.numeroContacto || '54320330';
+    
     return `
         <h2>${productoEditando !== null ? '✏️ Editar' : '➕ Nuevo'} Producto</h2>
         
@@ -73,7 +85,7 @@ function formularioHTML(p) {
             <strong>Vista previa:</strong><br>
             <span id="previewTexto">${p.nombre || 'Nombre'}</span><br>
             <span style="color: var(--text-secondary)">${(p.descripcion || '').substring(0, 50)}...</span><br>
-            <span style="color: var(--warning); font-weight: bold;">Precio: ${p.precio || 0}. Escribir al ${datos.config.numeroContacto || '54320330'}</span>
+            <span style="color: var(--warning); font-weight: bold;">Precio: ${p.precio || 0}. Escribir al ${numeroContacto}</span>
         </div>
 
         <div class="modal-actions">
@@ -85,23 +97,29 @@ function formularioHTML(p) {
 }
 
 function guardarProducto() {
+    if (!window.datos || !window.datos.productos) {
+        console.error('❌ datos no disponible');
+        mostrarToast('❌ Error: Datos no disponibles');
+        return;
+    }
+    
     const producto = {
-        id: productoEditando !== null ? datos.productos[productoEditando].id : generarID(),
+        id: productoEditando !== null ? window.datos.productos[productoEditando].id : generarID(),
         nombre: document.getElementById('editNombre').value,
         descripcion: document.getElementById('editDescripcion').value,
         precio: parseInt(document.getElementById('editPrecio').value) || 0,
         imagen: document.getElementById('editImagen').value,
         categoria: document.getElementById('editCategoria').value,
         tags: document.getElementById('editTags').value.split(',').map(t => t.trim()).filter(Boolean),
-        publicar: productoEditando !== null ? datos.productos[productoEditando].publicar : true,
-        fechaCreacion: productoEditando !== null ? datos.productos[productoEditando].fechaCreacion : new Date().toISOString().split('T')[0],
+        publicar: productoEditando !== null ? window.datos.productos[productoEditando].publicar : true,
+        fechaCreacion: productoEditando !== null ? window.datos.productos[productoEditando].fechaCreacion : new Date().toISOString().split('T')[0],
         fechaModificacion: new Date().toISOString().split('T')[0]
     };
 
     if (productoEditando !== null) {
-        datos.productos[productoEditando] = producto;
+        window.datos.productos[productoEditando] = producto;
     } else {
-        datos.productos.push(producto);
+        window.datos.productos.push(producto);
     }
 
     guardarLocal();
@@ -114,28 +132,25 @@ function generarID() {
     return 'prod-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5);
 }
 
-// ======================
-// VISTA PREVIA EN VIVO
-// ======================
+// Vista previa en vivo
 document.addEventListener('input', function(e) {
     if (e.target.closest('#modalContent')) {
         const nombre = document.getElementById('editNombre')?.value || 'Nombre';
         const desc = document.getElementById('editDescripcion')?.value || '';
         const precio = document.getElementById('editPrecio')?.value || '0';
         const preview = document.getElementById('previewTexto');
+        const numeroContacto = window.datos?.config?.numeroContacto || '54320330';
         if (preview) {
             preview.innerHTML = `
                 <strong>${nombre}</strong><br>
                 <span style="color: var(--text-secondary)">${desc.substring(0, 50)}...</span><br>
-                <span style="color: var(--warning); font-weight: bold;">Precio: ${precio}. Escribir al ${datos.config.numeroContacto || '54320330'}</span>
+                <span style="color: var(--warning); font-weight: bold;">Precio: ${precio}. Escribir al ${numeroContacto}</span>
             `;
         }
     }
 });
 
-// ======================
-// CERRAR MODAL
-// ======================
+// Cerrar modal
 document.getElementById('modalOverlay').addEventListener('click', function(e) {
     if (e.target === this) cerrarModal();
 });
@@ -143,3 +158,10 @@ document.getElementById('modalOverlay').addEventListener('click', function(e) {
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') cerrarModal();
 });
+
+// Hacer funciones globales
+window.abrirModalNuevo = abrirModalNuevo;
+window.abrirModalEditar = abrirModalEditar;
+window.cerrarModal = cerrarModal;
+window.guardarProducto = guardarProducto;
+window.initModal = initModal;

@@ -2,21 +2,24 @@
 // APP - LÓGICA PRINCIPAL
 // ======================
 
-// ======================
-// RENDERIZAR
-// ======================
 function renderizarTodo() {
+    if (!window.datos || !window.datos.productos) {
+        console.error('❌ datos no disponible en renderizarTodo');
+        return;
+    }
     renderizarStats();
     renderizarFiltros();
     renderizarProductos();
 }
 
 function renderizarStats() {
-    const total = datos.productos.length;
-    const activos = datos.productos.filter(p => p.publicar).length;
+    if (!window.datos || !window.datos.productos) return;
+    
+    const total = window.datos.productos.length;
+    const activos = window.datos.productos.filter(p => p.publicar).length;
     const ocultos = total - activos;
-    const precioMax = datos.productos.length > 0 
-        ? Math.max(...datos.productos.map(p => p.precio || 0)) 
+    const precioMax = window.datos.productos.length > 0 
+        ? Math.max(...window.datos.productos.map(p => p.precio || 0)) 
         : 0;
 
     document.getElementById('stats').innerHTML = `
@@ -40,21 +43,24 @@ function renderizarStats() {
 }
 
 function renderizarFiltros() {
-    const categorias = [...new Set(datos.productos.map(p => p.categoria).filter(Boolean))];
+    if (!window.datos || !window.datos.productos) return;
+    
+    const categorias = [...new Set(window.datos.productos.map(p => p.categoria).filter(Boolean))];
     const select = document.getElementById('filterCategoria');
-    select.innerHTML = '<option value="todas">Todas las categorías</option>' +
-        categorias.map(c => `<option value="${c}">${c}</option>`).join('');
+    if (select) {
+        select.innerHTML = '<option value="todas">Todas las categorías</option>' +
+            categorias.map(c => `<option value="${c}">${c}</option>`).join('');
+    }
 }
 
-// ======================
-// FILTRAR
-// ======================
 function filtrarProductos() {
+    if (!window.datos || !window.datos.productos) return;
+    
     const search = document.getElementById('searchInput').value.toLowerCase();
     const categoria = document.getElementById('filterCategoria').value;
     const estado = document.getElementById('filterEstado').value;
 
-    let filtrados = datos.productos;
+    let filtrados = window.datos.productos;
 
     if (search) {
         filtrados = filtrados.filter(p => 
@@ -77,22 +83,31 @@ function filtrarProductos() {
     renderizarProductos(filtrados);
 }
 
-// ======================
-// CRUD (acciones de tarjeta)
-// ======================
 function togglePublicar(index) {
-    datos.productos[index].publicar = !datos.productos[index].publicar;
-    datos.productos[index].fechaModificacion = new Date().toISOString().split('T')[0];
+    if (!window.datos || !window.datos.productos) return;
+    
+    window.datos.productos[index].publicar = !window.datos.productos[index].publicar;
+    window.datos.productos[index].fechaModificacion = new Date().toISOString().split('T')[0];
     guardarLocal();
     renderizarTodo();
-    mostrarToast(datos.productos[index].publicar ? '✅ Producto activado' : '👁️ Producto ocultado');
+    mostrarToast(window.datos.productos[index].publicar ? '✅ Producto activado' : '👁️ Producto ocultado');
 }
 
 function eliminarProducto(index) {
+    if (!window.datos || !window.datos.productos) return;
+    
     if (confirm('¿Eliminar este producto definitivamente?')) {
-        datos.productos.splice(index, 1);
+        window.datos.productos.splice(index, 1);
         guardarLocal();
         renderizarTodo();
         mostrarToast('🗑️ Producto eliminado');
     }
-} 
+}
+
+// Hacer funciones globales
+window.renderizarTodo = renderizarTodo;
+window.renderizarStats = renderizarStats;
+window.renderizarFiltros = renderizarFiltros;
+window.filtrarProductos = filtrarProductos;
+window.togglePublicar = togglePublicar;
+window.eliminarProducto = eliminarProducto;
