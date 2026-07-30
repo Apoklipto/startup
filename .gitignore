@@ -18,3 +18,10 @@ sesion_facebook/
 # Archivos temporales
 tmp/
 temp/
+
+# Scripts propietarios (NO SUBIR)
+publicador.js
+login.js
+
+# Archivos de configuración reales (si tienen datos privados)
+groups.txt
